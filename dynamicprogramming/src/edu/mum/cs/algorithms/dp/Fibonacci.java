@@ -5,11 +5,12 @@ public class Fibonacci {
 	
 
 	public static void main(String args[]){
+		
 		FibRecursive fibRecursive = new FibRecursive();
-		System.out.println(fibRecursive.Fib(10));
+		System.out.println(fibRecursive.Fib(50));
 		
 		FibMemoized fibMemoized = new FibMemoized();
-		System.out.println(fibMemoized.fib(10));
+		System.out.println(fibMemoized.fib(50));
 		
 		System.out.println("Recursive Calls count-->"+ FibRecursive.recursiveCall);
 		System.out.println("Memoized  Calls count-->"+ FibMemoized.memoizedCall);
@@ -34,7 +35,7 @@ class FibRecursive {
 	public static int recursiveCall=0;
 	public int Fib(int n){
 		recursiveCall++;
-		System.out.print(n+",");
+//		System.out.print(n+",");
 		if(n==0){
 			return 0;
 		}else if(n == 1){
@@ -43,7 +44,7 @@ class FibRecursive {
 			int x = Fib(n-2);
 			int y = Fib(n-1);
 			if(y==2){
-				System.out.println("Now it starts");
+//				System.out.println("Now it starts");
 			}
 			return x + y;
 		}
@@ -67,36 +68,34 @@ class FibMemoized {
 	public static int memoizedCall=0;
 	public static int[] F;
 	public int fib(int n){
-		System.out.println(n+"n");
-		F = new int[100];
-		for (int i : F) {
+		F = new int[n+1];
+		for (int i=0 ;i<F.length;i++) {
 			F[i] = -1;
 		}
-		return fibRecursive(F[n]);
+		for (int i=0 ;i<F.length;i++) {
+//			System.out.print(F[i]+",");
+		}
+		return fibRecursive(n);
 	}
 	
 	/**
-	 * Algorithm RecursiveFib(n):
-		Input: integer n ≥ 0
-		Output: the n-th Fibonacci number
-		if F[n] < 0 then // If Fib(n) has not been computed?
-		if n=0 then F[n] ← 0
-		else if n=1 then F[n] ← 1
-		else F[n] ← RecursiveFib(n-2) + RecursiveFib(n-1)
-		return F[n]
 	 * @param n
 	 * @return
 	 */
 	public int fibRecursive(int n){
+//		System.out.println(n+",");
 		memoizedCall++;
-		if(F[n] == 0 ){
-			F[n] = 0;
-		}else if(F[n] == 1) {
-			F[n] = 1;
-		}else{
-			F[n] = fibRecursive(F[n-2]) + fibRecursive(F[n-1]);
+//		System.out.print("F[n]->"+F[n]);
+		if(F[n] < 0){
+			if(n == 0 ){
+				F[n] = 0;
+			}else if(n == 1) {
+				F[n] = 1;
+			}else{
+				F[n] = fibRecursive(n-2) + fibRecursive(n-1);
+			}
 		}
-		return n;
+		return F[n];
 	}
 }
 
