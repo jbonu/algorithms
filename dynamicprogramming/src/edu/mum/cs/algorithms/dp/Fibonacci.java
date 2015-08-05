@@ -7,10 +7,10 @@ public class Fibonacci {
 	public static void main(String args[]){
 		
 		FibRecursive fibRecursive = new FibRecursive();
-		System.out.println(fibRecursive.Fib(50));
+		System.out.println(fibRecursive.fib(30));
 		
 		FibMemoized fibMemoized = new FibMemoized();
-		System.out.println(fibMemoized.fib(50));
+		System.out.println(fibMemoized.fib(30));
 		
 		System.out.println("Recursive Calls count-->"+ FibRecursive.recursiveCall);
 		System.out.println("Memoized  Calls count-->"+ FibMemoized.memoizedCall);
@@ -19,34 +19,20 @@ public class Fibonacci {
 
 
 /**
- * Algorithm Fib( n ):
-	Input: integer n ≥ 0
-	Output: the n-th Fibonacci number
-	if n=0 then
-	return 0
-	else if n=1 then
-	return 1
-	else
-	return Fib(n - 2) + Fib( n - 1)
+ *
  * @author 984417
  *
  */
 class FibRecursive {
 	public static int recursiveCall=0;
-	public int Fib(int n){
+	public int fib(int n){
 		recursiveCall++;
-//		System.out.print(n+",");
 		if(n==0){
 			return 0;
 		}else if(n == 1){
 			return 1;
 		}else{
-			int x = Fib(n-2);
-			int y = Fib(n-1);
-			if(y==2){
-//				System.out.println("Now it starts");
-			}
-			return x + y;
+			return fib(n-2) +  fib(n-1);
 		}
 	}
 	
@@ -54,13 +40,7 @@ class FibRecursive {
 
 
 /**
- * Algorithm memoizedFib(n):
-	Input: integer n ≥ 0
-	Output: the n-th Fibonacci number
-	F ← new array of size n+1
-	for i ← 0 to n do
-	F[i] ← -1
-	return RecursiveFib(n)
+ * 
  * @author 984417
  *
  */
@@ -73,12 +53,13 @@ class FibMemoized {
 			F[i] = -1;
 		}
 		for (int i=0 ;i<F.length;i++) {
-//			System.out.print(F[i]+",");
+			System.out.print(F[i]+",");
 		}
 		return fibRecursive(n);
 	}
 	
 	/**
+	 * 
 	 * @param n
 	 * @return
 	 */

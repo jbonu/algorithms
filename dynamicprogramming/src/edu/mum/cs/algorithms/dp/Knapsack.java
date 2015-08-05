@@ -68,7 +68,10 @@ public class Knapsack {
         // sol[n][w] = does opt solution to pack items 1..n with weight limit w include item n?
         int[][] opt = new int[N+1][W+1];
         boolean[][] sol = new boolean[N+1][W+1];
-
+        
+        for (int w = 0; w <= W; w++) {
+        	System.out.print(w+"\t");
+        }
         for (int n = 1; n <= N; n++) {
         	System.out.print("n="+n+"\t");
             for (int w = 1; w <= W; w++) {
